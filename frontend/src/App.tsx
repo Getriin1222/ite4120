@@ -3,6 +3,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { AnimalList } from './pages/AnimalList';
 import { AnimalCreate } from './pages/AnimalCreate';
 import { AnimalDetail } from './pages/AnimalDetail';
+import { PantryList } from './pages/pantry/PantryList';
+import { PantryCreate } from './pages/pantry/PantryCreate';
+import { PantryDetail } from './pages/pantry/PantryDetail';
 
 /**
  * Components that may be ABSENT from this checkout register their routes by
@@ -21,6 +24,9 @@ export const App = () => (
     <Route path="/animals" element={<AnimalList />} />
     <Route path="/animals/new" element={<AnimalCreate />} />
     <Route path="/animals/:id" element={<AnimalDetail />} />
+    <Route path="/pantry" element={<PantryList />} />
+    <Route path="/pantry/new" element={<PantryCreate />} />
+    <Route path="/pantry/:id" element={<PantryDetail />} />
     {componentRoutes}
   </Routes>
 );

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The pantry component changelog: household grocery inventory (PANTRY.01).
+  Same layout as animals. Released changesets are immutable: append, never edit.
+  No demo groceries on purpose: startup begins with the ten categories and an
+  empty inventory, which is what the specification asks for.
+-->
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.27.xsd">
+
+  <include file="pantry/db/changelog/pantry/pantry-schema.sql"/>
+  <include file="pantry/db/changelog/pantry/01-category.sql"/>
+  <include file="pantry/db/changelog/pantry/02-product.sql"/>
+  <include file="pantry/db/changelog/pantry/03-stock.sql"/>
+
+</databaseChangeLog>
