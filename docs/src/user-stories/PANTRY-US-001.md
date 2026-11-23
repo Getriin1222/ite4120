@@ -1,6 +1,6 @@
 # PANTRY-US-001 · Pantry user story v3
 
-> **PANTRY-US-001** · state **Implemented (Stage A), awaiting verification** · traces to [PANTRY.01](../specifications/PANTRY.01-household-inventory.md)
+> **PANTRY-US-001** · state **Implemented (Stage A); automated checks pass, manual checks pending** · traces to [PANTRY.01](../specifications/PANTRY.01-household-inventory.md)
 
 Check and maintain household grocery stock
 
@@ -95,4 +95,4 @@ These defaults were introduced while preparing the specification and are what St
 | 28 October 2026  | Explored product lookup and grouping across brands  | Retrospective scenario for review |
 | 7 November 2026  | Reworked the core scope and specification           | Retrospective scenario for review |
 | 23 November 2026 | Reviewed wording, examples and prepared v3          | Retrospective scenario for review |
-| 23 November 2026 | Stage A implemented against AC-01 to AC-10          | Current revision; tests not yet run |
+| 23 November 2026 | Stage A implemented against AC-01 to AC-10          | Current revision; automated checks pass |

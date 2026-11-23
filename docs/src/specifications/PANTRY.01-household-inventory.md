@@ -1,8 +1,8 @@
 # PANTRY.01 · Pantry specification v3
 
-> **PANTRY.01** · state **Implemented (Stage A), awaiting verification** · traces from [PANTRY-US-001](../user-stories/PANTRY-US-001.md)
+> **PANTRY.01** · state **Implemented (Stage A); automated checks pass, manual checks pending** · traces from [PANTRY-US-001](../user-stories/PANTRY-US-001.md)
 > · source `backend/src/main/java/ee/taltech/ite4120/pantry/`, `backend/src/main/resources/pantry/db/changelog/pantry/`, `frontend/src/pages/pantry/`, `frontend/src/pantryApi.ts`
-> · tests `backend/src/test/java/ee/taltech/ite4120/pantry/` (written; first run pending, see [Verification status](#verification-status))
+> · tests `backend/src/test/java/ee/taltech/ite4120/pantry/` (passing, see [Verification status](#verification-status))
 
 ## Description
 
@@ -395,7 +395,7 @@ The optional barcode can be entered manually. Camera capture is a future input m
 
 ## Business tests
 
-Executable form: `PantryBusinessRulesIT` (BT-01 to BT-12, against the service and a real PostgreSQL through Testcontainers) and `PantryApiIT` (the HTTP contract: 201 and Location, string ids, problem documents with `errors` and `existingProductId`, 400/404/409). They were written before the implementation. Their first run is still pending, so none is marked as passed in this document; see [Verification status](#verification-status). Implement the core tests before business implementation as required by the course workflow. BT-01 and BT-02 are the first minimum pair. The rest cover the specific grouping, stock consistency and fallback behaviour introduced by this design.
+Executable form: `PantryBusinessRulesIT` (BT-01 to BT-12, against the service and a real PostgreSQL through Testcontainers) and `PantryApiIT` (the HTTP contract: 201 and Location, string ids, problem documents with `errors` and `existingProductId`, 400/404/409). They were written before the implementation. The first local run failed for two reasons, both fixed: a page-size check that rejected the platform's default limit, and two tests that reused the same product identity, which the duplicate rule correctly refused. All of them now pass in the repository's Verify checks; see [Verification status](#verification-status). Implement the core tests before business implementation as required by the course workflow. BT-01 and BT-02 are the first minimum pair. The rest cover the specific grouping, stock consistency and fallback behaviour introduced by this design.
 
 ### BT-01 · Create product and initial stock together \[AC-02, AC-10\]
 
@@ -491,7 +491,7 @@ Given a lookup returns name and brand but no usable size, when the user opens th
 | 28 October 2026  | Explored Open Food Facts and grouping brands by food type | Retrospective scenario for review |
 | 7 November 2026  | Reworked the core fields, operations and whole-pack rules | Retrospective scenario for review |
 | 23 November 2026 | Reviewed wording, duplicate rules and examples for v3     | Retrospective scenario for review |
-| 23 November 2026 | Stage A implemented; specification aligned with the code  | Current revision; tests not yet run |
+| 23 November 2026 | Stage A implemented; specification aligned with the code  | Current revision; automated checks pass |
 
 ## Verification status
 
@@ -503,6 +503,6 @@ What was checked when Stage A was implemented, and what is still open. Update th
 | Pantry changesets from empty, local PostgreSQL 16 with a stand-in for the platform `core` schema | Applied; every check constraint and unique index accepted the valid and rejected the invalid examples; one defect found and fixed (a sized unit with no pack size passed the check) |
 | Repository SQL (search, literal %/_ escape, identity match, lock and version advance) on that database | As specified |
 | Backend type-check against stand-ins for the library signatures the animals code uses | Clean |
-| `./gradlew test` (business tests, migrations from empty with the real `core` schema) | **Not yet run**: needs the GitHub Packages token, Docker and JDK 25 |
-| `npx tsc -b`, `vite build` | **Not yet run**: needs `npm ci` with the token |
+| `./gradlew test`, first local run on a Mac (JDK 25, Docker) | Compiled; migrations applied from empty; failures in BT-01, BT-02, BT-04, BT-08, BT-09 and `PantryApiIT`, all traced to the two causes under Business tests and fixed |
+| Verify checks on pull request #1 of the group fork, commit 9bb69a8 ([run](https://github.com/Getriin1222/ite4120/actions/runs/45251510380)) | **Passed**: `./gradlew test` (all tests, including BT-01 to BT-12, `PantryApiIT` and the existing animals tests, migrations from empty with the real `core` schema), `npx tsc -b` + `vite build`, `scripts/check-changesets` |
 | Swagger UI, restart persistence, the storyboard in the browser incl. a narrow screen | **Not yet run** |

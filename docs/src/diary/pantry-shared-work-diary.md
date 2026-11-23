@@ -176,9 +176,11 @@ Shopping observation is included in SM's session time on the dates shown. The re
 **Verification on this date**
 
 - Ran: the changeset grammar check (clean); the pantry changesets from an empty local PostgreSQL 16 with a stand-in for the platform `core` schema (applied; all constraints and unique indexes behaved as specified after the fix above); the repository's SQL statements on that database; a compile check of the backend code against stand-ins for the library signatures used by the animals example.
-- Not yet run: `./gradlew test`, `npx tsc -b`, `vite build`, Swagger UI, restart persistence and the browser storyboard. These need the GitHub Packages token, Docker and JDK 25, which were not available where the code was written. The business tests have therefore not yet been seen to fail or pass.
+- First local `./gradlew test` on a Mac, after installing JDK 25, Node.js and Python and setting up the GitHub Packages token: the code compiled and the migrations ran from empty, but BT-01, BT-02, BT-04, BT-08, BT-09 and the API contract test failed. Two causes: the service range-checked the platform's default page size, which is outside 1 to 100, so every search without an explicit limit was refused; and several tests reused the product "Whole milk, Brand A, 1 l", which the duplicate rule correctly refused because tests share one database. Fixed by checking limit and offset only when the caller sends them, and by giving each test its own product names.
+- Verify checks on pull request #1 in the group's fork (`Getriin1222/ite4120`), commit 9bb69a8, [run](https://github.com/Getriin1222/ite4120/actions/runs/45251510380): backend tests, frontend typecheck and build, and the changeset check all passed.
+- Still to do by hand: Swagger UI, restart persistence and the browser storyboard, including a narrow window.
 
-**Review and decision** Open the pull request after SM and GT have run the checks listed under Verification status in the specification and recorded the actual results here. Points to check first: the record page leaves out a delete action (no product delete in this version), and the list relies on the platform's `limit` and `offset` query parameters.
+**Review and decision** Pull request #1 is open in the group fork with all automated checks green. Before merging, SM and GT review it, run the manual checks above, and complete the contributor and time fields of this entry.
 
 ## Time summary
 
