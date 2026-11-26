@@ -18,7 +18,7 @@ This retrospective draft uses proposed real-life scenarios and estimated timings
 | 19 November 2026 | Walked through overlapping updates | 15 min | 1 h | 1 h 30 min |
 | 23 November 2026 | Reviewed documents and prepared v3 | — | 1 h 45 min | 1 h 15 min |
 | 23 November 2026 | Implemented Stage A on `feature/pantry-stage-a` | — | 2 h 5 min | 3 h |
-| **Total** | | **1 h 40 min** | **12 h** | **15 h** |
+| **Total** | | **1 h 40 min** | **14 h** | **15 h** |
 
 Shopping observation is included in SM's session time on the dates shown. The rest of SM's time and all of GT's time cover working on the app concept, walkthroughs, discussion and documentation. Combined time is 24 person-hours. Overlapping work by both participants is counted separately for each person. The totals do not yet include the Stage A implementation entry; add it once SM and GT have confirmed their hours.
 
